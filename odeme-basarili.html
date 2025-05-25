@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ödeme Başarılı</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>✅ Ödeme Tamamlandı!</h1>
+    <p>Teşekkür ederiz. Sipariş No: 
+       <span id="orderId"></span>
+    </p>
+    <script>
+        const url = new URL(window.location.href);
+        document.getElementById("orderId").textContent = 
+            url.searchParams.get("m_orderid");
+    </script>
+</body>
+</html>

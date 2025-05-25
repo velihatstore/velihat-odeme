@@ -1,0 +1,7 @@
+<script>
+// Payeer IPN Simülasyonu
+if(window.location.search.includes("m_operation_id")) {
+    alert("Ödeme bildirimi alındı: " + 
+          new URLSearchParams(window.location.search).get("m_orderid"));
+}
+</script>
