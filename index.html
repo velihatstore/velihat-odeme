@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>www.bossuniversalmusic.com & turkishcoffe.store - Resmi Ödeme Sayfası</title>
+    <title>BOSS UNIVERSAL MUSIC - Resmi Ödeme Portalı</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -35,7 +35,7 @@
             margin-bottom: 8px;
             font-weight: bold;
         }
-        input[type="number"] {
+        input[type="number"], input[type="email"] {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
@@ -83,8 +83,8 @@
 </head>
 <body>
     <div class="header">
-        <h1>BOSS UNIVERSAL</h1>
-        <p>Resmi Ödeme Portalı</p>
+        <h1>BOSS UNIVERSAL MUSIC LLC</h1>
+        <p>Resmi Ödeme Portalı - Payeer Entegrasyonu</p>
     </div>
 
     <div class="payment-container">
@@ -95,7 +95,7 @@
         </div>
 
         <div class="notice">
-            <strong>ÖNEMLİ UYARI:</strong> Lütfen yalnızca size verilen teklif tutarını giriniz. Harici tutar girişlerinden işletmemiz sorumlu değildir. İade talepleriniz için support@bossuniversalmusic.com lutfen bize yazin
+            <strong>ÖNEMLİ UYARI:</strong> Lütfen yalnızca size verilen teklif tutarını giriniz. Harici tutar girişlerinden işletmemiz sorumlu değildir. İade talepleriniz için support@bossuniversalmusic.com adresinden ulasabilirsiniz.
         </div>
 
         <form id="paymentForm">
@@ -114,7 +114,7 @@
 
         <div class="footer">
             <p>© 2023 BOSS UNIVERSAL MUSIC LLC - Tüm hakları saklıdır</p>
-            <p><a href="https://www.bossuniversalmusic.com/terms-of-service/" target="_blank">Hizmet Sartlari</a> | <a href="https://bossuniversalmusic.com/privacy" target="_blank">Gizlilik Politikası</a></p>
+            <p><a href="https://www.bossuniversalmusic.com/terms-of-service/" target="_blank">Kullanım Koşulları</a> | <a href="https://bossuniversalmusic.com/privacy" target="_blank">Gizlilik Politikası</a></p>
         </div>
     </div>
 
@@ -123,23 +123,31 @@
         document.getElementById("paymentForm").addEventListener("submit", function(e) {
             e.preventDefault();
             
-            // Payeer Merchant Bilgileri
-            const m_shop = "2227690394"; // Mağaza ID'niz
-            const m_key = "GIZLI_ANAHTARINIZ"; // Payeer panelinden alınacak
+            // Payeer Merchant Bilgileri (DENETİM ÖNCESİ TEST DEĞERLERİ)
+            const m_shop = "2227690394"; // Payeer panelinizdeki Merchant ID
+            const m_key = "test123"; // Payeer panelinde "Secret Key" olarak ayarlayın
             
             const m_amount = document.getElementById("amount").value;
             const m_orderid = "BUM-" + Date.now();
-            const m_desc = encodeURIComponent("BOSS UNIVERSAL MUSIC ÖDEME #" + m_orderid);
+            const m_desc = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse("BOSS UNIVERSAL MUSIC ÖDEME #" + m_orderid));
             const customer_email = document.getElementById("email").value;
             
-            // İmza oluşturma
-            const signStr = `${m_shop}:${m_orderid}:${m_amount}:USD:${m_desc}:${m_key}`;
-            const m_sign = CryptoJS.MD5(signStr).toString();
+            // SHA256 İmza Oluşturma (Payeer standardı)
+            const signStr = [
+                m_shop,
+                m_orderid,
+                m_amount,
+                "USD",
+                m_desc,
+                m_key
+            ].join(":");
             
-            // Ödeme formunu gönder
+            const m_sign = CryptoJS.SHA256(signStr).toString(CryptoJS.enc.Hex).toUpperCase();
+            
+            // Ödeme formunu oluştur
             const form = document.createElement("form");
-            form.method = "GET";
-            form.action = "https://payeer.com/merchant/";
+            form.method = "POST"; // Payeer POST metodunu öneriyor
+            form.action = "https://payeer.com/merchant/"; // CANLI ortam
             
             const fields = {
                 m_shop: m_shop,
@@ -148,7 +156,17 @@
                 m_curr: "USD",
                 m_desc: m_desc,
                 m_sign: m_sign,
-                m_email: customer_email
+                m_email: customer_email,
+                m_params: CryptoJS.enc.Base64.stringify(CryptoJS.AES.encrypt(
+                    JSON.stringify({
+                        success_url: "https://velihat.store/odeme-basarili",
+                        fail_url: "https://velihat.store/odeme-basarisiz",
+                        status_url: "https://velihat.store/ipn-handler"
+                    }), 
+                    CryptoJS.enc.Utf8.parse(m_key),
+                    { mode: CryptoJS.mode.ECB }
+                )),
+                m_cipher_method: "AES-256-CBC"
             };
             
             for (const key in fields) {
