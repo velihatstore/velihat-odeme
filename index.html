@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Boss Universal Music LLC – Official Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; color: #222; background: #fff; }
+    header { background-color: #111; color: white; padding: 60px 20px; text-align: center; }
+    header h1 { margin: 0; font-size: 2.5em; }
+    header p { font-size: 1.2em; margin-top: 10px; color: #ccc; }
+    section { padding: 40px 20px; max-width: 960px; margin: auto; }
+    h2 { margin-top: 40px; font-size: 1.8em; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+    .service { margin-bottom: 30px; }
+    .service h3 { margin: 0; font-size: 1.2em; }
+    .price { color: #007BFF; font-weight: bold; }
+    footer { background: #f4f4f4; padding: 40px 20px; text-align: center; font-size: 0.9em; color: #555; }
+    .policy { text-align: left; margin-top: 40px; font-size: 0.9em; }
+    a { color: #007BFF; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Form styling */
+    form {
+      margin-top: 40px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fafafa;
+      max-width: 400px;
+    }
+    form input[type="text"] {
+      width: 100%;
+      padding: 8px 10px;
+      margin: 8px 0 16px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+    form input[type="submit"] {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+    form input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    form label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Boss Universal Music LLC</h1>
+    <p>Professional Music, Media & Licensing Services – Est. in Sheridan, WY</p>
+  </header>
+
+  <section>
+    <h2>Our Services</h2>
+    <div class="service">
+      <h3>🎵 Music Production (Single Track)</h3>
+      <p>Original beat, mixing, mastering included. Delivery in WAV/MP3 formats.</p>
+      <p class="price">$499 USD</p>
+    </div>
+    <div class="service">
+      <h3>🎬 Music Video Production</h3>
+      <p>Full HD video shooting, editing and delivery. Up to 3 minutes duration.</p>
+      <p class="price">$1,200 USD</p>
+    </div>
+    <div class="service">
+      <h3>🌐 Global Digital Distribution</h3>
+      <p>Release your music on Spotify, Apple Music, YouTube and more.</p>
+      <p class="price">$199 USD</p>
+    </div>
+    <div class="service">
+      <h3>📰 Media PR & Influencer Campaign</h3>
+      <p>Get featured on music blogs and social media platforms with sponsored campaigns.</p>
+      <p class="price">Starting from $399 USD</p>
+    </div>
+
+    <h2>Make a Payment</h2>
+    <form method="post" action="https://account.volet.com/sci/">
+      <label for="ac_amount">Amount (USD):</label>
+      <input type="text" id="ac_amount" name="ac_amount" value="1.00" required />
+
+      <input type="hidden" name="ac_account_email" value="hakanakhanli@gmail.com" />
+      <input type="hidden" name="ac_sci_name" value="velihatstore" />
+
+      <label for="ac_currency">Currency:</label>
+      <input type="text" id="ac_currency" name="ac_currency" value="USD" readonly />
+
+      <label for="ac_order_id">Order ID:</label>
+      <input type="text" id="ac_order_id" name="ac_order_id" value="123456789" required />
+
+      <input type="hidden" name="ac_sign" value="72b84fdd0857c288fc8b73529057e98042f0c487788a7de1eeba84c6859c2702" />
+
+      <label for="ac_comments">Comments:</label>
+      <input type="text" id="ac_comments" name="ac_comments" value="Comment" />
+
+      <input type="hidden" name="ac_success_url" value="https://velihat.store/odeme-basarili.html" />
+      <input type="hidden" name="ac_success_url_method" value="POST" />
+      <input type="hidden" name="ac_fail_url" value="https://velihat.store/odeme-basarisiz.html" />
+      <input type="hidden" name="ac_fail_url_method" value="POST" />
+      <input type="hidden" name="ac_status_url" value="https://velihat.store/volet-ipn-handler.php" />
+      <input type="hidden" name="ac_status_url_method" value="POST" />
+
+      <input type="submit" value="Pay Now" />
+    </form>
+  </section>
+
+  <section>
+    <h2>Contact & Billing</h2>
+    <p><strong>Company:</strong> Boss Universal Music Company LLC</p>
+    <p><strong>Address:</strong> 30n Gould St, Sheridan, WY 82801, USA</p>
+    <p><strong>Email:</strong> <a href="mailto:support@bossuniversalmusic.com">support@bossuniversalmusic.com</a></p>
+    <p><strong>Phone:</strong> +1 208 802 0803</p>
+    <p><strong>Tax ID:</strong> EIN 36-5132189</p>
+    <p>We provide official billing and invoices with each service purchased.</p>
+  </section>
+
+  <section class="policy">
+    <h2>Return & Refund Policy</h2>
+    <p>All services provided by Boss Universal Music LLC are custom and digital. Refunds are only granted if the service has not yet started or in case of non-delivery due to technical issues. Once a service has begun, it is considered non-refundable. For disputes or support, please contact us within 7 days of purchase.</p>
+
+    <h2>Privacy Policy</h2>
+    <p>We respect your privacy. All personal data collected via our contact or payment forms is used solely for providing the purchased service. We do not sell, rent or share your data with third parties. We use secure SSL encryption for all transactions.</p>
+
+    <h2>Terms of Service</h2>
+    <p>By using our services, you agree not to upload or request any illegal, copyrighted, or offensive content. Boss Universal Music LLC reserves the right to refuse service for any reason at any time.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Boss Universal Music LLC. All rights reserved. | Site by BossUniversalMedia™
+  </footer>
+</body>
+</html>
