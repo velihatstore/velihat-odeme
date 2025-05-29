@@ -1,185 +1,88 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOSS UNIVERSAL MUSIC - Resmi Ödeme Portalı</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-        .header {
-            background-color: #1a1a2e;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-radius: 5px 5px 0 0;
-        }
-        .payment-container {
-            background: white;
-            padding: 30px;
-            border-radius: 0 0 5px 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        input[type="number"], input[type="email"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .pay-button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .pay-button:hover {
-            background-color: #45a049;
-        }
-        .notice {
-            background-color: #fff3cd;
-            padding: 15px;
-            border-left: 4px solid #ffc107;
-            margin: 20px 0;
-            font-size: 14px;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #6c757d;
-            font-size: 13px;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-        .payment-methods {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .payment-methods img {
-            height: 30px;
-            margin: 0 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Velihat Store - Ödeme Sayfası</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .payment-container {
+      background: #1f1f1f;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      width: 320px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #00fff7;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      border: none;
+      font-size: 1rem;
+    }
+    input[type="submit"] {
+      width: 100%;
+      padding: 0.7rem;
+      background: #00fff7;
+      border: none;
+      border-radius: 4px;
+      color: #121212;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    input[type="submit"]:hover {
+      background: #00ccc7;
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <h1>BOSS UNIVERSAL MUSIC LLC</h1>
-        <p>Resmi Ödeme Portalı - Payeer Entegrasyonu</p>
-    </div>
+  <div class="payment-container">
+    <h1>Ödeme Yap</h1>
+    <form method="post" action="https://account.volet.com/sci/">
+      <input type="hidden" name="ac_account_email" value="hakanakhanli@gmail.com" />
+      <input type="hidden" name="ac_sci_name" value="velihatstore" />
+      
+      <label for="amount">Tutar (USD)</label>
+      <input type="number" id="amount" name="ac_amount" value="1.00" step="0.01" min="0.01" required />
 
-    <div class="payment-container">
-        <div class="payment-methods">
-            <img src="https://payeer.com/images/logo.png" alt="Payeer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png" alt="Mastercard">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa">
-        </div>
+      <input type="hidden" name="ac_currency" value="USD" />
+      <input type="hidden" name="ac_order_id" value="123456789" />
+      <input type="hidden" name="ac_sign" value="72b84fdd0857c288fc8b73529057e98042f0c487788a7de1eeba84c6859c2702" />
 
-        <div class="notice">
-            <strong>ÖNEMLİ UYARI:</strong> Lütfen yalnızca size verilen teklif tutarını giriniz. Harici tutar girişlerinden işletmemiz sorumlu değildir. İade talepleriniz için support@bossuniversalmusic.com adresinden ulasabilirsiniz.
-        </div>
+      <input type="hidden" name="ac_success_url" value="https://velihat.store/odeme-basarili.html" />
+      <input type="hidden" name="ac_success_url_method" value="GET" />
+      <input type="hidden" name="ac_fail_url" value="https://velihat.store/odeme-basarisiz.html" />
+      <input type="hidden" name="ac_fail_url_method" value="GET" />
+      <input type="hidden" name="ac_status_url" value="https://velihat.store/volet-ipn-handler.php" />
+      <input type="hidden" name="ac_status_url_method" value="GET" />
 
-        <form id="paymentForm">
-            <div class="form-group">
-                <label for="amount">Ödeme Miktarı (USD)</label>
-                <input type="number" id="amount" min="1.00" step="0.01" placeholder="Lütfen verilen teklifi giriniz" required>
-            </div>
+      <label for="comments">Yorum (isteğe bağlı)</label>
+      <input type="text" id="comments" name="ac_comments" placeholder="Ödeme ile ilgili yorumunuz" />
 
-            <div class="form-group">
-                <label for="email">E-posta Adresiniz</label>
-                <input type="email" id="email" required>
-            </div>
-
-            <button type="submit" class="pay-button">Güvenli Ödeme Yap</button>
-        </form>
-
-        <div class="footer">
-            <p>© 2023 BOSS UNIVERSAL MUSIC LLC - Tüm hakları saklıdır</p>
-            <p><a href="https://www.bossuniversalmusic.com/terms-of-service/" target="_blank">Kullanım Koşulları</a> | <a href="https://bossuniversalmusic.com/privacy" target="_blank">Gizlilik Politikası</a></p>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
-    <script>
-        document.getElementById("paymentForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-            
-            // Payeer Merchant Bilgileri (DENETİM ÖNCESİ TEST DEĞERLERİ)
-            const m_shop = "2227690394"; // Payeer panelinizdeki Merchant ID
-            const m_key = "test123"; // Payeer panelinde "Secret Key" olarak ayarlayın
-            
-            const m_amount = document.getElementById("amount").value;
-            const m_orderid = "BUM-" + Date.now();
-            const m_desc = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse("BOSS UNIVERSAL MUSIC ÖDEME #" + m_orderid));
-            const customer_email = document.getElementById("email").value;
-            
-            // SHA256 İmza Oluşturma (Payeer standardı)
-            const signStr = [
-                m_shop,
-                m_orderid,
-                m_amount,
-                "USD",
-                m_desc,
-                m_key
-            ].join(":");
-            
-            const m_sign = CryptoJS.SHA256(signStr).toString(CryptoJS.enc.Hex).toUpperCase();
-            
-            // Ödeme formunu oluştur
-            const form = document.createElement("form");
-            form.method = "POST"; // Payeer POST metodunu öneriyor
-            form.action = "https://payeer.com/merchant/"; // CANLI ortam
-            
-            const fields = {
-                m_shop: m_shop,
-                m_orderid: m_orderid,
-                m_amount: m_amount,
-                m_curr: "USD",
-                m_desc: m_desc,
-                m_sign: m_sign,
-                m_email: customer_email,
-                m_params: CryptoJS.enc.Base64.stringify(CryptoJS.AES.encrypt(
-                    JSON.stringify({
-                        success_url: "https://velihat.store/odeme-basarili",
-                        fail_url: "https://velihat.store/odeme-basarisiz",
-                        status_url: "https://velihat.store/ipn-handler"
-                    }), 
-                    CryptoJS.enc.Utf8.parse(m_key),
-                    { mode: CryptoJS.mode.ECB }
-                )),
-                m_cipher_method: "AES-256-CBC"
-            };
-            
-            for (const key in fields) {
-                const input = document.createElement("input");
-                input.type = "hidden";
-                input.name = key;
-                input.value = fields[key];
-                form.appendChild(input);
-            }
-            
-            document.body.appendChild(form);
-            form.submit();
-        });
-    </script>
+      <input type="submit" value="Ödeme Başlat" />
+    </form>
+  </div>
 </body>
 </html>
